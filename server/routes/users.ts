@@ -1,4 +1,17 @@
-export const getUser = (req: any, res: any) => {
-  const id = req.params.id;
-  res.send({ express: `Requested data for user ID: ${id}` });
+import { getToken } from '../data_music/config';
+import { httpget } from '../utils/httpfetch';
+
+const MYSONGS = 'https://api.spotify.com/v1/me/tracks';
+
+export const getSongs = async (req: any, res: any) => {
+  try {
+    const response = await httpget(MYSONGS, {
+      headers: { Authorization: getToken() },
+    });
+
+    res.send(response.data);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 };
