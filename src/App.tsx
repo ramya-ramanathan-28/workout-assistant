@@ -39,23 +39,19 @@ function App() {
   return (
     <LoginContext.Provider value={loginDetails}>
       <div className="App">
-        <div className="header">
-          <AppHeader></AppHeader>
-        </div>
-        <div className="body">
+        <AppHeader/>
+        <div className="main">
           <MainBody
             stage={stageOfApp}
             setStage={(stage) => setStageOfApp(stage)}
           ></MainBody>
         </div>
-        <div className="footer">
-          <Footer
-            stage={stageOfApp}
-            setStage={(increase: boolean) =>
-              setStageOfApp(increase ? stageOfApp + 1 : stageOfApp - 1)
-            }
-          ></Footer>
-        </div>
+        <Footer
+          stage={stageOfApp}
+          setStage={(increase: boolean) =>
+            setStageOfApp(increase ? stageOfApp + 1 : stageOfApp - 1)
+          }
+        />
       </div>
     </LoginContext.Provider>
   );

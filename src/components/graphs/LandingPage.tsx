@@ -1,6 +1,8 @@
 import { Button } from 'office-ui-fabric-react';
 import React from 'react';
 import { LoginContext } from '../../contexts';
+import {Login} from "./../../Header/login"
+import Graph from "./graph";
 
 export default function LandingPage(props: {
   setStage: (stage: number) => void;
@@ -11,17 +13,16 @@ export default function LandingPage(props: {
         <div className="landing-page-cont">
           <div className="landing-page-greeting">
             <strong>
-              Hi
-              <br></br>
-              {userName}
+              {`Hi, ${userName}!`}
             </strong>
-            <br></br>
           </div>
           <div className="landing-page-message">
             {isLoggedin
-              ? 'Lets Get Your Workout Started'
-              : 'Before Anything Lets Login'}
+              ? 'Lets choose the intensity of your workout...'
+              : 'Please login to begin.'}
           </div>
+          { !isLoggedin && <Login/>}
+          { isLoggedin && <Graph/>}
         </div>
       )}
     </LoginContext.Consumer>

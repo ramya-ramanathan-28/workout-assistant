@@ -11,7 +11,7 @@ export function AppHeader(props: any) {
     <LoginContext.Consumer>
       {({ isLoggedin, userName }) => (
         <div className="AppHeader">
-          <strong>Workout Assistant</strong>
+          <strong style={{fontSize: "40px"}}>Workout Assistant</strong>
           <div className="ProfileInfo">
             {isLoggedin ? (
               <ProfileInfo userName={userName}></ProfileInfo>
