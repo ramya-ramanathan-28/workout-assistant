@@ -1,9 +1,15 @@
 import axios from 'axios';
 import queryString from 'querystring';
 import request from 'request';
+import { getToken } from '../data_music/config';
 export async function httpget(req, config = {}) {
   try {
-    return await axios.get(req, config);
+    return await axios.get(req, {
+      ...{
+        headers: { Authorization: getToken() },
+      },
+      ...config,
+    });
   } catch (error) {
     return error;
   }
@@ -11,7 +17,12 @@ export async function httpget(req, config = {}) {
 
 export async function httppost(url, data, config) {
   try {
-    return await axios.post(url, queryString.stringify(data), config);
+    return await axios.post(url, queryString.stringify(data), {
+      ...{
+        headers: { Authorization: getToken() },
+      },
+      ...config,
+    });
   } catch (error) {
     console.log('error', url);
     console.log(error);
