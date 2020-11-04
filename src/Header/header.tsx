@@ -1,4 +1,5 @@
 import React from 'react';
+import { LoginContext } from '../contexts';
 import { Login } from './login';
 
 function ProfileInfo(props: { userName: React.ReactNode }) {
@@ -7,15 +8,19 @@ function ProfileInfo(props: { userName: React.ReactNode }) {
 
 export function AppHeader(props: any) {
   return (
-    <div className="AppHeader">
-      <strong>Workout Assistant</strong>
-      <div className="ProfileInfo">
-        {props.isLoggedIn ? (
-          <ProfileInfo userName={props.userName}></ProfileInfo>
-        ) : (
-          <Login></Login>
-        )}
-      </div>
-    </div>
+    <LoginContext.Consumer>
+      {({ isLoggedin, userName }) => (
+        <div className="AppHeader">
+          <strong>Workout Assistant</strong>
+          <div className="ProfileInfo">
+            {isLoggedin ? (
+              <ProfileInfo userName={userName}></ProfileInfo>
+            ) : (
+              <Login></Login>
+            )}
+          </div>
+        </div>
+      )}
+    </LoginContext.Consumer>
   );
 }

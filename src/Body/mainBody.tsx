@@ -14,34 +14,31 @@ function SongList(props: any) {
       );
     }
   }, [showSongs]);
-  if (isloggedin) {
-    const listItems = songsList.map((item: { track: { name: '' } }) => {
-      let name = item.track.name;
-      return <li>{name}</li>;
-    });
-    const ShowSongs = showSongs ? <ul>{listItems}</ul> : null;
-    return (
-      <div>
-        <Button
-          disabled={!isloggedin}
-          onClick={() => {
-            setShowSongs(!showSongs);
-          }}
-        >
-          ShowSongs
-        </Button>
-        {ShowSongs}
-      </div>
-    );
-  } else {
-    return <Button disabled={!props.isloggedin}>ShowSongs</Button>;
-  }
+  //if (isloggedin) {
+  const listItems = songsList.map((item: { track: { name: '' } }) => {
+    let name = item.track.name;
+    return <li>{name}</li>;
+  });
+  const ShowSongs = showSongs ? <ul>{listItems}</ul> : null;
+  return (
+    <div>
+      <Button
+        onClick={() => {
+          setShowSongs(!showSongs);
+        }}
+      >
+        ShowSongs
+      </Button>
+      {ShowSongs}
+    </div>
+  );
+  //} else {
+  //return <Button disabled={!props.isloggedin}>ShowSongs</Button>;
+  // }
 }
 
 export default function MainBody(props: {
   stage: any;
-  loggedin: boolean;
-  loggeduser: React.ReactNode;
   setStage: (stage: number) => void;
 }) {
   let comp = <div></div>;
@@ -49,11 +46,7 @@ export default function MainBody(props: {
     case 0:
       comp = (
         <div>
-          <LandingPage
-            isLoggedIn={props.loggedin}
-            userName={props.loggeduser}
-            setStage={props.setStage}
-          ></LandingPage>
+          <LandingPage setStage={props.setStage}></LandingPage>
         </div>
       );
       break;
@@ -61,7 +54,7 @@ export default function MainBody(props: {
       comp = <SelectionPage></SelectionPage>;
       break;
     case 2:
-      comp = <SongList isLoggedIn={props.loggedin}></SongList>;
+      comp = <SongList></SongList>;
       break;
     default:
       comp = <div></div>;

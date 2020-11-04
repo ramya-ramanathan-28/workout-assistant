@@ -1,10 +1,10 @@
 import React from 'react';
 import Graph from './graph';
 
-export function SelectionPage() {
+export function SelectionPage(props: any) {
   return (
     <div className="selectionpage">
-      <Graph></Graph>
+      <Graph setSelectedConfig={props.setSelectedConfig}></Graph>
     </div>
   );
 }
