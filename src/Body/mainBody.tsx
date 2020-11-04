@@ -45,19 +45,15 @@ export default function MainBody(props: {
   switch (props.stage) {
     case 0:
       comp = (
-        <div>
           <LandingPage setStage={props.setStage}></LandingPage>
-        </div>
       );
       break;
+    // case 1:
+    //   comp = <SelectionPage></SelectionPage>;
+    //   break;
     case 1:
-      comp = <SelectionPage></SelectionPage>;
-      break;
-    case 2:
       comp = <SongList></SongList>;
       break;
-    default:
-      comp = <div></div>;
   }
-  return comp;
+return (<div>{comp}</div>);
 }
