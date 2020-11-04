@@ -45,7 +45,6 @@ export function SelectionPage(props: any) {
         >
           <ReactIcons.AddIcon className={classes.icon} />
           <br />
-          <code className={classes.code}>Choose Your Own Graph</code>
         </div>
       </div>
     </div>
