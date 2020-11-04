@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LoginContext } from '../contexts';
 import { Login } from './login';
 
@@ -7,20 +7,17 @@ function ProfileInfo(props: { userName: React.ReactNode }) {
 }
 
 export function AppHeader(props: any) {
+  const { isLoggedin, userName } = useContext(LoginContext);
   return (
-    <LoginContext.Consumer>
-      {({ isLoggedin, userName }) => (
-        <div className="AppHeader">
-          <strong>Workout Assistant</strong>
-          <div className="ProfileInfo">
-            {isLoggedin ? (
-              <ProfileInfo userName={userName}></ProfileInfo>
-            ) : (
-              <Login></Login>
-            )}
-          </div>
-        </div>
-      )}
-    </LoginContext.Consumer>
+    <div className="AppHeader">
+      <strong>Workout Assistant</strong>
+      <div className="ProfileInfo">
+        {isLoggedin ? (
+          <ProfileInfo userName={userName}></ProfileInfo>
+        ) : (
+          <Login></Login>
+        )}
+      </div>
+    </div>
   );
 }

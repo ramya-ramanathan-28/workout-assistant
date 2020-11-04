@@ -1,7 +1,10 @@
 import { Button } from 'office-ui-fabric-react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { CreateGraph } from '../components/graphs/CreateGraph';
 import LandingPage from '../components/graphs/LandingPage';
 import { SelectionPage } from '../components/graphs/SelectionPage';
+import { STAGES } from '../constant';
+import { AppStageContext } from '../contexts';
 
 function SongList(props: any) {
   const isloggedin = props.isLoggedIn;
@@ -37,24 +40,27 @@ function SongList(props: any) {
   // }
 }
 
-export default function MainBody(props: {
-  stage: any;
-  setStage: (stage: number) => void;
-}) {
+export default function MainBody(props: {}) {
+  const { currentStage, setNextStage } = useContext(AppStageContext);
   let comp = <div></div>;
-  switch (props.stage) {
-    case 0:
+  switch (currentStage) {
+    case STAGES.LandingPage:
+      setNextStage(STAGES.SelectionPage);
       comp = (
         <div>
-          <LandingPage setStage={props.setStage}></LandingPage>
+          <LandingPage></LandingPage>
         </div>
       );
       break;
-    case 1:
+    case STAGES.SelectionPage:
+      setNextStage(STAGES.SongsList);
       comp = <SelectionPage></SelectionPage>;
       break;
-    case 2:
+    case STAGES.SongsList:
       comp = <SongList></SongList>;
+      break;
+    case STAGES.OwnGraph:
+      comp = <CreateGraph></CreateGraph>;
       break;
     default:
       comp = <div></div>;
