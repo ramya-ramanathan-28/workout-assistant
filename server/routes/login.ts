@@ -5,6 +5,7 @@ import {
   processTokenResponse,
   getToken,
 } from './../data_music/config';
+import { getUserInfo } from './../data_music/getSpotifyData';
 import { httpget, httppost, loginpost } from './../utils/httpfetch';
 const redirect_uri = 'http://localhost:5000/redirectCallback';
 export const login = (req: any, res: any) => {
@@ -47,6 +48,12 @@ export const refreshToken = async (refresh_token) => {
   }
 };
 
-export const isLoggedIn = function (req, res) {
-  res.send(!!getToken());
+export const isLoggedIn = async function (req, res) {
+  const userInfo = await getUserInfo();
+  const isLoggeIn = !!getToken();
+  if (isLoggeIn) {
+    res.send({ isLoggedIn: isLoggeIn, userName: userInfo.data.display_name });
+  } else {
+    res.send({ isLoggedIn: false });
+  }
 };

@@ -8,7 +8,6 @@ export const getSongs = async (req: any, res: any) => {
     const response = await httpget(MYSONGS, {
       headers: { Authorization: getToken() },
     });
-
     res.send(response.data);
   } catch (err) {
     console.log(err);
