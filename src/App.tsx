@@ -48,39 +48,4 @@ function App() {
   );
 }
 
-function SongList(props: any) {
-  const isloggedin = props.isLoggedin;
-  const [showSongs, setShowSongs] = useState(false);
-  const [songsList, setSongsList] = useState([]);
-  useEffect(() => {
-    if (showSongs) {
-      fetch('http://localhost:5000/api/songs').then((response) =>
-        response.json().then((res) => setSongsList(res.items))
-      );
-    }
-  }, [showSongs]);
-  if (isloggedin) {
-    const listItems = songsList.map((item: { track: { name: '' } }) => {
-      let name = item.track.name;
-      return <li>{name}</li>;
-    });
-    const ShowSongs = showSongs ? <ul>{listItems}</ul> : null;
-    return (
-      <div>
-        <button
-          disabled={!isloggedin}
-          onClick={() => {
-            setShowSongs(!showSongs);
-          }}
-        >
-          ShowSongs
-        </button>
-        {ShowSongs}
-      </div>
-    );
-  } else {
-    return <button disabled={!props.isloggedin}>ShowSongs</button>;
-  }
-}
-
 export default App;

@@ -1,6 +1,42 @@
-import React from 'react';
+import { Button } from 'office-ui-fabric-react';
+import React, { useEffect, useState } from 'react';
 import LandingPage from '../components/graphs/LandingPage';
 import { SelectionPage } from '../components/graphs/SelectionPage';
+
+function SongList(props: any) {
+  const isloggedin = props.isLoggedIn;
+  const [showSongs, setShowSongs] = useState(false);
+  const [songsList, setSongsList] = useState([]);
+  useEffect(() => {
+    if (showSongs) {
+      fetch('http://localhost:5000/api/songs').then((response) =>
+        response.json().then((res) => setSongsList(res.items))
+      );
+    }
+  }, [showSongs]);
+  if (isloggedin) {
+    const listItems = songsList.map((item: { track: { name: '' } }) => {
+      let name = item.track.name;
+      return <li>{name}</li>;
+    });
+    const ShowSongs = showSongs ? <ul>{listItems}</ul> : null;
+    return (
+      <div>
+        <Button
+          disabled={!isloggedin}
+          onClick={() => {
+            setShowSongs(!showSongs);
+          }}
+        >
+          ShowSongs
+        </Button>
+        {ShowSongs}
+      </div>
+    );
+  } else {
+    return <Button disabled={!props.isloggedin}>ShowSongs</Button>;
+  }
+}
 
 export default function MainBody(props: {
   stage: any;
@@ -23,6 +59,9 @@ export default function MainBody(props: {
       break;
     case 1:
       comp = <SelectionPage></SelectionPage>;
+      break;
+    case 2:
+      comp = <SongList isLoggedIn={props.loggedin}></SongList>;
       break;
     default:
       comp = <div></div>;
