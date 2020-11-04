@@ -21,14 +21,14 @@ export const getSongs = async (req: any, res: any) => {
     });
     if(songs.length > 0){
       const songLink = `https://api.spotify.com/v1/audio-features/?ids=${ids}`
-      let featuresList: Array<any> = []
+      let featuresList: Array<Array<string>> = []
       let songIdList: Array<string> = []
       const songFeatures = await httpget(songLink, {
         headers: { Authorization: token },
       })
       songFeatures.data.audio_features.forEach(songFeature => {
-        const {id, danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence,tempo, duration_ms, time_signature} = songFeature;
-        featuresList.push([tempo, danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, duration_ms, time_signature]);
+        const {id, danceability, energy, loudness, acousticness, valence, tempo, duration_ms, time_signature} = songFeature;
+        featuresList.push([10*tempo, 10*danceability, 10*energy, 2*(loudness+60), 1/acousticness, valence, time_signature]);
         songIdList.push(id)
       });
       kmeans.clusterize(featuresList, {k: 3}, (err,res) => {
@@ -44,6 +44,7 @@ export const getSongs = async (req: any, res: any) => {
         centroid.forEach((val: any, index: number)=>{
           clusterList[val.centroid]["intensity"] = index; 
         })
+        console.log(clusterList)
       }
       // clusterList contains songs and their intensities(0: Low, 1: Medium, 2: High) 
       });
