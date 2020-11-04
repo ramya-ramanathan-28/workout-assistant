@@ -1,50 +1,67 @@
 .App {
-  text-align: center;
-  min-height: 100vh;
+  /* text-align: center; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+  /* justify-content: space-between; */
+  /* align-items: stretch; */
 }
-.App .body {
-  flex: 1 1 auto;
-  height: 100%;
-  border: 10px black solid;
-  background-image: url('https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Running/620/Workouts+Under+30+Mins/SummerRun620.jpg');
+
+
+
+.main {
+  /* flex: 1 1 auto; */
+  /* height: 100%; */
+  flex-grow: 1;
+  /* border: 10px red solid; */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(21, 136, 62, 0.3)), url('./background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
 }
-.App .header,
+/* .App .header,
 .App .footer {
   height: 4em;
   flex: 0 1 auto;
   border: 1px black solid;
-}
+} */
 .Appfooter,
 .AppHeader {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
-  align-items: center;
-  padding: 0 0.5em;
-  color: white;
-  background-color: #141127;
-  justify-content: space-between;
-}
-.Appfooter {
-  align-items: flex-end;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  color: white;
+  background-color: black;
 }
+
 .landing-page-cont {
-  border: 10px black solid;
-  font-size: xxx-large;
-  background: white;
-  display: flex;
-  flex-direction: column;
+  /* border: 1px black dotted; */
+  /* height: 100%; */
+  /* width: auto; */
+  /* padding: 20%; */
+  /* font-size: xxx-large; */
+  /* background: white; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  color: white;
+  font-size: 50px;
+  font-weight: 600;
+  padding: 5%;
 }
+
+.landing-page-greeting{
+  margin-bottom: 20px;
+}
+
 .landing-page-message {
-  flex: 2 1 auto;
-  margin: 20%;
+  margin-bottom: 20px;
+  /* flex: 2 1 auto; */
+  /* margin: 20%; */
 }
 .selectionpage {
   display: flex;

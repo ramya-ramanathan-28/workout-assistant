@@ -43,15 +43,11 @@ function App() {
     <LoginContext.Provider value={loginDetails}>
       <AppStageContextProvider>
         <div className="App">
-          <div className="header">
-            <AppHeader></AppHeader>
-          </div>
-          <div className="body">
+          <AppHeader />
+          <div className="main">
             <MainBody></MainBody>
           </div>
-          <div className="footer">
-            <Footer></Footer>
-          </div>
+          <Footer />
         </div>
       </AppStageContextProvider>
     </LoginContext.Provider>

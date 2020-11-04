@@ -3,11 +3,15 @@ import React from 'react';
 
 export function Login(_props: any) {
   return (
-    <Button
-      buttonType={ButtonType.primary}
-      onClick={() => window.location.replace('http://localhost:5000/login')}
-    >
-      Login
+    <Button 
+    onClick={() => window.location.replace('http://localhost:5000/login')}
+    styles={{root:{
+      borderRadius: "15px",
+      backgroundColor: "white",
+      fontWeight: 600,
+      color: "black",
+    }}}>
+      Continue with Spotify
     </Button>
   );
 }

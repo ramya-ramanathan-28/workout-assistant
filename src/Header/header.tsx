@@ -10,7 +10,7 @@ export function AppHeader(props: any) {
   const { isLoggedin, userName } = useContext(LoginContext);
   return (
     <div className="AppHeader">
-      <strong>Workout Assistant</strong>
+      <strong style={{ fontSize: '40px' }}>Workout Assistant</strong>
       <div className="ProfileInfo">
         {isLoggedin ? (
           <ProfileInfo userName={userName}></ProfileInfo>
