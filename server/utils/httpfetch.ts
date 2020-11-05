@@ -15,11 +15,11 @@ export async function httpget(req, config = {}) {
   }
 }
 
-export async function httppost(url, data, config) {
+export async function httppost(url, data?, config?, headers?) {
   try {
-    return await axios.post(url, queryString.stringify(data), {
+    return await axios.post(url, data, {
       ...{
-        headers: { Authorization: getToken() },
+        headers: { Authorization: getToken(), ...headers },
       },
       ...config,
     });
