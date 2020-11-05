@@ -32,22 +32,22 @@ export function SelectTime() {
           {
             id: 15,
             src: './images/periodic_rest.png',
-            alt: '15',
+            alt: '15 mins',
           },
           {
             id: 30,
             src: './images/gradual_increase.png',
-            alt: '30',
+            alt: '30 mins',
           },
           {
             id: 45,
             src: './images/gradual_increase_decrease.png',
-            alt: '45',
+            alt: '45 mins',
           },
           {
             id: 60,
             src: './images/high_intensity_interval_training.png',
-            alt: '60',
+            alt: '60 mins',
           },
         ]}
       ></Graph>
@@ -57,6 +57,11 @@ export function SelectTime() {
         showValue
         // eslint-disable-next-line react/jsx-no-bind
         onChange={setSelectedDuration}
+        styles={{
+          line: {
+            color: "white"
+          }
+        }}
       />
       Duration : {timeConvert(selectedDuration)}
     </div>

@@ -52,7 +52,7 @@ function App() {
             <div className="main">
               <MainBody></MainBody>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </WorkoutContextProvider>
       </AppStageContextProvider>

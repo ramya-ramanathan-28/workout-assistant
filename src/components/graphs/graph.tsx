@@ -12,7 +12,7 @@ function Graph(props: any) {
             props.isImage ? (
               <button
                 className={`${graphClassNames.item} ${
-                  props.selectedItem == eachItem.id ? 'selected-pattern' : ''
+                  props.selectedItem === eachItem.id ? 'selected-pattern' : ''
                 }`}
                 onClick={() => {
                   props.onSelect(eachItem.id);
@@ -27,7 +27,7 @@ function Graph(props: any) {
             ) : (
               <Button
                 className={`${graphClassNames.item} ${
-                  props.selectedItem == eachItem.id ? 'selected-pattern' : ''
+                  props.selectedItem === eachItem.id ? 'selected-pattern' : ''
                 }`}
                 onClick={() => {
                   props.onSelect(eachItem.id);

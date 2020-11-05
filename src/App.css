@@ -81,7 +81,7 @@
   flex-direction: column;
 }
 .selected-pattern {
-  border: blue 4px solid;
+  border: white 4px solid;
 }
 
 .song-list {
@@ -108,4 +108,12 @@
   width: 40px;
   border-radius: 50%;
   margin: 0 10px
+}
+
+.ms-Slider-active {
+  background-color: #15883e !important;
+}
+
+.selectionpage_userDefined_container{
+  margin-top: auto;
 }
