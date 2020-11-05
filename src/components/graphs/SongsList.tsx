@@ -1,12 +1,13 @@
 import React, {useState,useEffect, useContext} from "react";
-import { Button, mergeStyleSets } from 'office-ui-fabric-react';
+import { Button, DetailsList, mergeStyleSets } from 'office-ui-fabric-react';
 import {WorkoutContext} from "../../contexts";
+import  {DetailsListDocumentsExample} from "./Songs";
 
-const classes = mergeStyleSets({
-    divb: {
-      background: '#FFFFFF',
-    },
-  });
+// const classes = mergeStyleSets({
+//     divb: {
+//       background: '#FFFFFF',
+//     },
+//   });
 
 function SongList(props: any) {
     const isloggedin = props.isLoggedIn;
@@ -22,30 +23,31 @@ function SongList(props: any) {
       }
     }, [showSongs]);
     //if (isloggedin) {
-    const listItems1 = (songsList.filter((item: any) => {
-      return item.intensity == 0;
-    })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
+    // const listItems1 = (songsList.filter((item: any) => {
+    //   return item.intensity == 0;
+    // })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
   
-    const listItems2 = (songsList.filter((item: any) => {
-      return item.intensity == 1;
-    })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
+    // const listItems2 = (songsList.filter((item: any) => {
+    //   return item.intensity == 1;
+    // })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
   
-    const listItems3 = (songsList.filter((item: any) => {
-      return item.intensity == 2;
-    })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
+    // const listItems3 = (songsList.filter((item: any) => {
+    //   return item.intensity == 2;
+    // })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
   
-    const ShowSongs = showSongs ? (
-      <div className={classes.divb}>
-        <text> Low</text>
-        <ul>{listItems1}</ul>
-        <text> Medium</text>
-        <ul>{listItems2}</ul>
-        <text> High</text>
-        <ul>{listItems3}</ul>
-      </div>
-    ) : null;
+    // const ShowSongs = showSongs ? (
+    //   <div className={classes.divb}>
+    //     <text> Low</text>
+    //     <ul>{listItems1}</ul>
+    //     <text> Medium</text>
+    //     <ul>{listItems2}</ul>
+    //     <text> High</text>
+    //     <ul>{listItems3}</ul>
+    //   </div>
+    // ) : null;
+
     return (
-      <div>
+      <>
         <Button
           onClick={() => {
             setShowSongs(!showSongs);
@@ -53,12 +55,26 @@ function SongList(props: any) {
         >
           ShowSongs
         </Button>
-        {ShowSongs}
-      </div>
+        <Button
+          onClick={() => {
+            // setShowSongs(!showSongs);
+          }}
+        >
+          Add to Queue
+        </Button>
+        <Button
+          onClick={() => {
+            // setShowSongs(!showSongs);
+          }}
+        >
+          Create Playlist
+        </Button>
+        {/* {ShowSongs} */}
+        <div className="song-list">
+          <DetailsListDocumentsExample songList={songsList} key={songsList.length}/>
+        </div>
+      </>
     );
-    //} else {
-    //return <Button disabled={!props.isloggedin}>ShowSongs</Button>;
-    // }
   }
 
   export default SongList;
