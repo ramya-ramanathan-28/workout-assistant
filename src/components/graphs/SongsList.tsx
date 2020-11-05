@@ -16,8 +16,10 @@ function SongList(props: any) {
     console.log(">>> ",workoutContext.format);
     useEffect(() => {
       if (showSongs) {
-        fetch('http://localhost:5000/api/songs').then((response) =>
-          response.json().then((res) => setSongsList(res))
+        fetch('http://localhost:5000/api/addSongsToPlaylist?songIds=2Zgnaip1c876zmBhz9HifI,4CoSCPlKNrWli7E5kFtbcl', {
+          method:'post'
+        }).then((response) =>
+          response.json().then((res) => console.log(res))
         );
       }
     }, [showSongs]);
