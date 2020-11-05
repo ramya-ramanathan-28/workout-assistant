@@ -219,5 +219,5 @@ export const addSongsToPlaylist = async (req: any, res: any) => {
   const addToPlaylistUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${songString}`
   await httppost(addToPlaylistUrl)
 
-  res.send({url: `https://open.spotify.com/playlist/`})
+  res.send({url: `https://open.spotify.com/playlist/${playlistId}`})
 }
