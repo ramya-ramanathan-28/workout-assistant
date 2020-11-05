@@ -16,7 +16,7 @@ export default function LandingPage() {
           ? 'Lets choose the intensity of your workout...'
           : 'Please login to begin.'}
       </div>
-      {!isLoggedin && <Login />}
+      {!isLoggedin && <Login text="Continue with Spotify"/>}
       {isLoggedin && <SelectionPage />}
     </div>
   );

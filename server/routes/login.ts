@@ -55,7 +55,7 @@ export const isLoggedIn = async function (req, res) {
     res.send({
       isLoggedIn: isLoggeIn,
       userName: userInfo.data.display_name,
-      profilePicLink: userInfo.data.images[0].url,
+      profilePicLink: userInfo.data?.images[0]?.url,
     });
   } else {
     res.send({ isLoggedIn: false });
