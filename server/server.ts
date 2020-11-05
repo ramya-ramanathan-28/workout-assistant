@@ -8,7 +8,7 @@ import express from 'express';
 import { postMessages, putMessage } from './routes/messages';
 
 import { isLoggedIn, login, redirectCallback } from './routes/login';
-import { getSongs } from './routes/users';
+import { getPlaylist, getSongs } from './routes/users';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 // user
 app.get('/api/songs', getSongs);
+
+app.get('/api/playlist', getPlaylist);
 
 // messages
 app.post('/api/messages', postMessages);

@@ -20,6 +20,9 @@ function SongList(props: any) {
       fetch('http://localhost:5000/api/songs').then((response) =>
         response.json().then((res) => setSongsList(res))
       );
+      // fetch('http://localhost:5000/api/playlist?duration=1000000&defaultPattern=1').then((response) =>
+      //   response.json().then((res) => setSongsList(res))
+      // );
     }
   }, [showSongs]);
   //if (isloggedin) {
@@ -35,6 +38,7 @@ function SongList(props: any) {
     return item.intensity == 2;
   })[0] as any)?.songs.map((eachItem: any) => <li>{eachItem.name}</li>);
 
+  // const songListAll = songsList.map((eachItem: any) => <li>{eachItem.name}</li>);
   const ShowSongs = showSongs ? (
     <div className={classes.divb}>
       <text> Low</text>
@@ -43,6 +47,8 @@ function SongList(props: any) {
       <ul>{listItems2}</ul>
       <text> High</text>
       <ul>{listItems3}</ul>
+      {/* <text> Playlist </text>
+      <ul>{songListAll}</ul> */}
     </div>
   ) : null;
   return (
