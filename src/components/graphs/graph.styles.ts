@@ -28,7 +28,7 @@ const getGraphStyles = (): IGraphStyles => {
       margin: "10px",
       selectors: {
         ':hover': {
-          opacity: 0.6,
+          opacity: 0.2,
           cursor:  "pointer"
           // border: '1px solid #0000ff',
         },
