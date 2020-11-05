@@ -17,7 +17,7 @@ function SongList(props: any) {
     console.log(">>> ",workoutContext.format);
     useEffect(() => {
       if (showSongs) {
-        fetch('http://localhost:5000/api/songs').then((response) =>
+        fetch(`http://localhost:5000/api/playlist?duration=3600000&defaultPattern=${workoutContext.format}`).then((response) =>
         response.json().then((res) => setSongsList(res))
         );
       }
@@ -71,7 +71,7 @@ function SongList(props: any) {
         </Button>
         {/* {ShowSongs} */}
         <div className="song-list">
-          <DetailsListDocumentsExample songList={songsList} key={songsList.length}/>
+        {showSongs &&<DetailsListDocumentsExample songList={songsList} key={songsList.length}/>}
         </div>
       </>
     );

@@ -208,7 +208,7 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
 
 function _generateDocuments(props: any) {
     const items: IDocument[] = [];
-    props.songList[0]?.songs.forEach((item: any) => {
+    props.songList.forEach((item: any) => {
         items.push({
             key: item.name,
             name: item.name,
