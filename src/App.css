@@ -85,8 +85,17 @@
 }
 
 .song-list {
-  width: 900px;
+  /* width: 900px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* margin: 0 400px; */
+}
+
+.ms-DetailsList{
+  width: 1000px;
+  opacity: 0.9;
+  overflow-x: hidden;
 }
 
 .ms-DetailsRow-fields,
@@ -94,6 +103,7 @@
 .ms-DetailsRow,
 .ms-DetailsRow-cell {
   background-color: black;
+  opacity: 0.8;
   color: white !important;
   border: none;
   font-size: 15px;
@@ -101,6 +111,7 @@
 
 .ms-DetailsHeader-cell {
   color: #afafaf;
+  border-bottom: 1px solid #afafaf;
 }
 
 .profile_pic_image {

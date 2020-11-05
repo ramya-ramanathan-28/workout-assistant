@@ -22,39 +22,83 @@ function SongList(props: any) {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          const songids = songsList.map((song: any) => {
-            return song.id;
-          });
-
-          fetch(
-            `http://localhost:5000/api/addSongsToPlaylist?songIds=${songids.join()}`,
-            { method: 'post' }
-          ).then((response) =>
-            response.json().then((res) => {
-              console.log(res);
-              setPlaylistLink(res.url);
-            })
-          );
-        }}
-      >
-        Create Playlist
-      </Button>
       <div className="song-list">
-        {
+        {playlistLink === '' && (
+          <div style={{display: "flex", margin: "20px"}}>
+          <Button
+          styles={{root:{
+            borderRadius: "15px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            color: "black",
+            margin: "0 10px"
+          }}}
+            onClick={() => {
+              const songids = songsList.map((song: any) => {
+                return song.id;
+              });
+              
+              fetch(
+                `http://localhost:5000/api/addSongsToPlaylist?songIds=${songids.join()}`,
+                { method: 'post' }
+                ).then((response) =>
+                response.json().then((res) => {
+                  console.log(res);
+                  setPlaylistLink(res.url);
+                })
+                );
+              }}
+              >
+            Create Playlist on Spotify
+          </Button>
+          <Button
+          styles={{root:{
+            borderRadius: "15px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            color: "black",
+            margin: "0 10px"
+          }}}
+            onClick={() => {
+              const songids = songsList.map((song: any) => {
+                return song.id;
+              });
+              
+              fetch(
+                `http://localhost:5000/api/addSongsToPlaylist?songIds=${songids.join()}`,
+                { method: 'post' }
+                ).then((response) =>
+                response.json().then((res) => {
+                  console.log(res);
+                  setPlaylistLink(res.url);
+                })
+                );
+              }}
+              >
+            Add songs to the queue
+          </Button>
+        </div>
+        )}
+        { playlistLink === '' &&
           <DetailsListDocumentsExample
-            songList={songsList}
+          songList={songsList}
             key={songsList.length}
           />
         }
+        {playlistLink !== '' && (
+          <div style={{
+            fontSize: "80px",
+            fontWeight: "bolder",
+            color: "white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
+            <p>Playlist created</p>
+            <a href={playlistLink} style={{color:"white"}}>Click here to listen</a>
+          </div>
+        )}
       </div>
-      {playlistLink !== '' && (
-        <div>
-          Playlist created. Click below
-          <a href={playlistLink}>Link</a>
-        </div>
-      )}
     </>
   );
 }
