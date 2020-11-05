@@ -1,9 +1,9 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { CreateGraph } from '../components/graphs/CreateGraph';
 import LandingPage from '../components/graphs/LandingPage';
 import { STAGES } from '../constant';
 import { AppStageContext } from '../contexts';
-import SongList from "../components/graphs/SongsList"
+import SongList from '../components/graphs/SongsList';
 
 export default function MainBody(props: {}) {
   const { currentStage, setNextStage } = useContext(AppStageContext);

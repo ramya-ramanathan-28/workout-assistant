@@ -7,14 +7,17 @@
   /* align-items: stretch; */
 }
 
-
-
 .main {
   /* flex: 1 1 auto; */
   /* height: 100%; */
   flex-grow: 1;
   /* border: 10px red solid; */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(21, 136, 62, 0.3)), url('./background.jpg');
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(21, 136, 62, 0.3)
+    ),
+    url('./background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -30,6 +33,7 @@
 .Appfooter,
 .AppHeader {
   /* height: 100%; */
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -54,7 +58,7 @@
   padding: 5%;
 }
 
-.landing-page-greeting{
+.landing-page-greeting {
   margin-bottom: 20px;
 }
 
@@ -76,19 +80,31 @@
   display: flex;
   flex-direction: column;
 }
+.selected-pattern {
+  border: blue 4px solid;
+}
 
-.song-list{
+.song-list {
   width: 900px;
   /* margin: 0 400px; */
 }
 
-.ms-DetailsRow-fields, .ms-DetailsHeader, .ms-DetailsRow, .ms-DetailsRow-cell{
+.ms-DetailsRow-fields,
+.ms-DetailsHeader,
+.ms-DetailsRow,
+.ms-DetailsRow-cell {
   background-color: black;
   color: white !important;
   border: none;
   font-size: 15px;
 }
 
-.ms-DetailsHeader-cell{
-  color: #afafaf
+.ms-DetailsHeader-cell {
+  color: #afafaf;
+}
+
+.profile_pic_image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }

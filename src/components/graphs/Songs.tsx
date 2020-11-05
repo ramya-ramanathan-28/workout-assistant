@@ -45,8 +45,8 @@ const classNames = mergeStyleSets({
     marginBottom: '20px',
   },
   detailsList: {
-      height: "900px",
-  }
+    height: '900px',
+  },
 });
 
 export interface IDetailsListDocumentsExampleState {
@@ -64,35 +64,40 @@ export interface IDocument {
   value: string;
   modifiedBy: string;
   duration: string;
+  artists: string;
+  album: string;
 }
 
-export class DetailsListDocumentsExample extends React.PureComponent<{songList: any}, IDetailsListDocumentsExampleState> {
+export class DetailsListDocumentsExample extends React.PureComponent<
+  { songList: any },
+  IDetailsListDocumentsExampleState
+> {
   private _selection: Selection;
   private _allItems: IDocument[];
-  private columns: IColumn[] ;
+  private columns: IColumn[];
 
-  constructor(props: {songList: any}) {
+  constructor(props: { songList: any }) {
     super(props);
 
     this._allItems = _generateDocuments(props);
 
-    this.columns =  [
-    //   {
-    //     key: 'column1',
-    //     name: 'File Type',
-    //     className: classNames.fileIconCell,
-    //     iconClassName: classNames.fileIconHeaderIcon,
-    //     ariaLabel: 'Column operations for File type, Press to sort on File type',
-    //     iconName: 'HeartFill',
-    //     isIconOnly: true,
-    //     fieldName: 'name',
-    //     minWidth: 16,
-    //     maxWidth: 16,
-    //     // onColumnClick: this._onColumnClick,
-    //     onRender: (item: IDocument) => {
-    //       return <img src={item.iconName} className={classNames.fileIconImg} alt={item.fileType + ' file icon'} />;
-    //     },
-    //   },
+    this.columns = [
+      //   {
+      //     key: 'column1',
+      //     name: 'File Type',
+      //     className: classNames.fileIconCell,
+      //     iconClassName: classNames.fileIconHeaderIcon,
+      //     ariaLabel: 'Column operations for File type, Press to sort on File type',
+      //     iconName: 'HeartFill',
+      //     isIconOnly: true,
+      //     fieldName: 'name',
+      //     minWidth: 16,
+      //     maxWidth: 16,
+      //     // onColumnClick: this._onColumnClick,
+      //     onRender: (item: IDocument) => {
+      //       return <img src={item.iconName} className={classNames.fileIconImg} alt={item.fileType + ' file icon'} />;
+      //     },
+      //   },
       {
         key: 'column2',
         name: 'Title',
@@ -112,7 +117,7 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
       {
         key: 'column4',
         name: 'Artist',
-        fieldName: 'modifiedBy',
+        fieldName: 'artists',
         minWidth: 70,
         maxWidth: 90,
         isResizable: true,
@@ -120,14 +125,14 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
         data: 'string',
         // onColumnClick: this._onColumnClick,
         onRender: (item: IDocument) => {
-          return <span>{item.modifiedBy}</span>;
+          return <span>{item.artists}</span>;
         },
         isPadded: true,
       },
       {
         key: 'column5',
         name: 'Album',
-        fieldName: 'fileSizeRaw',
+        fieldName: 'album',
         minWidth: 70,
         maxWidth: 90,
         isResizable: false,
@@ -135,7 +140,7 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
         data: 'number',
         // onColumnClick: this._onColumnClick,
         onRender: (item: IDocument) => {
-          return <span>{item.modifiedBy}</span>;
+          return <span>{item.album}</span>;
         },
       },
       {
@@ -156,8 +161,7 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
 
     this._selection = new Selection({
       onSelectionChanged: () => {
-        this.setState({
-        });
+        this.setState({});
       },
     });
 
@@ -174,29 +178,35 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
     // const { columns, isCompactMode} = this.state;
 
     return (
-    //   <Fabric>
-        // {(
-          <DetailsList
-            className={classNames.detailsList}
-            // styles={{contentWrapper:{
-            //     backgroundColor:"green"
-            // }}}
-            items={this._allItems}
-            compact={false}
-            columns={this.columns}
-            selectionMode={SelectionMode.none}
-            getKey={this._getKey}
-            setKey="none"
-            layoutMode={DetailsListLayoutMode.justified}
-            isHeaderVisible={true}
-          />
-        // )}
-    //   </Fabric>
+      //   <Fabric>
+      // {(
+      <DetailsList
+        className={classNames.detailsList}
+        // styles={{contentWrapper:{
+        //     backgroundColor:"green"
+        // }}}
+        items={this._allItems}
+        compact={false}
+        columns={this.columns}
+        selectionMode={SelectionMode.none}
+        getKey={this._getKey}
+        setKey="none"
+        layoutMode={DetailsListLayoutMode.justified}
+        isHeaderVisible={true}
+      />
+      // )}
+      //   </Fabric>
     );
   }
 
-  public componentDidUpdate(previousProps: any, previousState: IDetailsListDocumentsExampleState) {
-    if (previousState.isModalSelection !== this.state.isModalSelection && !this.state.isModalSelection) {
+  public componentDidUpdate(
+    previousProps: any,
+    previousState: IDetailsListDocumentsExampleState
+  ) {
+    if (
+      previousState.isModalSelection !== this.state.isModalSelection &&
+      !this.state.isModalSelection
+    ) {
       this._selection.setAllSelected(false);
     }
   }
@@ -207,17 +217,19 @@ export class DetailsListDocumentsExample extends React.PureComponent<{songList: 
 }
 
 function _generateDocuments(props: any) {
-    const items: IDocument[] = [];
-    props.songList.forEach((item: any) => {
-        items.push({
-            key: item.name,
-            name: item.name,
-            value: item.name,
-            modifiedBy: "gopal",
-            duration: String((item.duration/60000).toFixed(2))
-            });
-        
-            // return null;
+  const items: IDocument[] = [];
+  props.songList.forEach((item: any) => {
+    items.push({
+      key: item.name,
+      name: item.name,
+      value: item.name,
+      modifiedBy: 'gopal',
+      duration: String((item.duration / 60000).toFixed(2)),
+      artists: item.artists,
+      album: item.album,
     });
+
+    // return null;
+  });
   return items;
 }
