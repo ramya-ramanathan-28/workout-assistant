@@ -5,7 +5,7 @@ const ObjectsToCsv = require('objects-to-csv');
 const kmeans = require('node-kmeans');
 
 const MYSONGS = 'https://api.spotify.com/v1/me/tracks?limit=50';
-let featuresList: Array<Array<string>> = [];
+let featuresList: Array<Array<number>> = [];
 let songIdList: Array<Object> = [];
 
 const getSongList = async () => {
@@ -41,16 +41,15 @@ const getSongList = async () => {
         name,
       } = songFeature;
       featuresList.push([
-        10 * tempo,
-        10 * danceability,
-        10 * energy,
-        2 * (loudness + 60),
-        1 / acousticness,
-        valence,
-        time_signature,
+        tempo/200,
+        danceability,
+        2 * energy,
+        10 * (loudness + 60)/60,
+        (1/acousticness)/1000,
+        10 * valence
       ]);
       songIdList.push({ id: id, name: idNameMap[id], duration: duration_ms });
-      // console.log('song', songIdList[songIdList.length - 1]);
+      console.log('song', songIdList[songIdList.length - 1]);
     });
 
 }
@@ -65,16 +64,16 @@ const fetchBuckets = async (buckets: number = 3): Promise<any[]> => {
             songs: Array<Object>;
             intensity?: number;
           }> = [];
-          const centroid: Array<{ tempo: number; centroid: number }> = [];
+          const centroid: Array<{ tempo: number; danceability: number, energy: number, centroid: number }> = [];
           res.forEach((cluster: any, index: number) => {
-            centroid.push({ tempo: cluster.centroid[0], centroid: index });
+            centroid.push({ tempo: cluster.centroid[0], danceability: cluster.centroid[1], energy: cluster.centroid[2], centroid: index });
             clusterList.push({
               songs: cluster.clusterInd.map(
                 (index: number) => songIdList[index]
               ),
             });
           });
-          centroid.sort((a, b) => (a.tempo > b.tempo ? 1 : -1));
+          centroid.sort((a, b) => ((a.tempo + a.danceability + a.energy) > (b.tempo + b.danceability + b.energy) ? 1 : -1));
           centroid.forEach((val: any, index: number) => {
             clusterList[val.centroid]['intensity'] = index;
           });
@@ -161,40 +160,34 @@ const getDefaultPattern = (slots: number, defaultPattern: string) => {
 export const getPlaylist = async (req: any, res: any) => {
   let songsPattern: Array<number>;
   const duration = parseInt(req.query.duration);
-  console.log(duration)
   const defaultPattern = req.query.defaultPattern
   let buckets: Array<any>;
   await getSongList();
   const {median, slots} = getSlotDuration(duration)
-  console.log(slots)
+  let slotDuration = median;
   if(defaultPattern){
     songsPattern = getDefaultPattern(slots, defaultPattern);
-    console.log(songsPattern)
   }
   else {
     songsPattern = req.query.songsPattern.split(','); 
+    slotDuration = duration/songsPattern.length;
   }
   const max = Math.max(...songsPattern)
-  console.log(max)
   buckets = await fetchBuckets(max);
   let visited: Array<number> = []
   let playlist: Array<number> = []
   songsPattern.forEach((songIntensity: number)=>{
-    let slotTimeRemaining = median
+    let slotTimeRemaining = slotDuration
     buckets.forEach((bucket: any) => {
       if (bucket.intensity === songIntensity - 1) {
         let songs: Array<any> = bucket["songs"]
-        while (slotTimeRemaining >= -3000 && songs.length) {
-          // console.log("Entered")
+        while (slotTimeRemaining >= -30000 && songs.length) {
           songs = songs.filter((song: any) => {
             return song["duration"] <= slotTimeRemaining + 30000 && !visited.includes(song["id"])
           })
-          // console.log(songs)
           if (songs.length) {
             let randomIndex = Math.floor(Math.random() * songs.length);
-            // console.log(randomIndex)
             while (visited.includes(songs[randomIndex].id)) {
-              // console.log(randomIndex)
               randomIndex = Math.floor(Math.random() * songs.length);
             }
             visited.push(songs[randomIndex].id)
