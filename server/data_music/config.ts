@@ -6,7 +6,7 @@ let refreshIntervalId;
 
 export const my_client_id = process.env.MYCLIENTID;
 export const my_client_secret = process.env.MYCLIENTSECRET;
-export const scopes = 'user-read-private user-read-email user-library-read';
+export const scopes = 'user-read-private user-read-email user-library-read playlist-modify-private playlist-modify-public';
 
 export function processTokenResponse(res) {
   clearTimeout(refreshIntervalId);

@@ -1,7 +1,6 @@
-import { createIntersectionTypeNode } from 'typescript';
 import { getToken } from '../data_music/config';
-import { httpget } from '../utils/httpfetch';
-const ObjectsToCsv = require('objects-to-csv');
+import { httpget, httppost } from '../utils/httpfetch';
+import axios from 'axios';
 const kmeans = require('node-kmeans');
 
 const MYSONGS = 'https://api.spotify.com/v1/me/tracks?limit=50';
@@ -16,10 +15,18 @@ const getSongList = async () => {
 
   const songs = response.data?.items;
   let ids: string = '';
-  const idNameMap = {};
+  const idInfoMap = {};
   songs.forEach((song) => {
     ids += `${song.track.id},`;
-    idNameMap[song.track.id] = song.track.name;
+    idInfoMap[song.track.id] = {
+      name: song.track.name,
+      artists: (song.track.artists || []).reduce(
+        (artistLink, item) =>
+          `${artistLink}${artistLink ? ' ,' : ''}${item.name}`,
+        ''
+      ),
+      album: song.track.album.name,
+    };
   });
 
   if (songs.length > 0) {
@@ -48,7 +55,13 @@ const getSongList = async () => {
         1 / acousticness / 1000,
         10 * valence,
       ]);
-      songIdList.push({ id: id, name: idNameMap[id], duration: duration_ms });
+      songIdList.push({
+        id: id,
+        name: idInfoMap[id].name,
+        duration: duration_ms,
+        artists: idInfoMap[id].artists,
+        album: idInfoMap[id].album,
+      });
       console.log('song', songIdList[songIdList.length - 1]);
     });
   }
@@ -216,4 +229,32 @@ export const getPlaylist = async (req: any, res: any) => {
     });
   });
   res.send(playlist);
+};
+
+export const addSongsToPlaylist = async (req: any, res: any) => {
+  const songIds = req.query.songIds.split(',');
+  let songString = '';
+  songIds.forEach(
+    (songId: string) => (songString += `spotify:track:${songId},`)
+  );
+
+  const userDetailsUrl = 'https://api.spotify.com/v1/me';
+  const user_id = (await httpget(userDetailsUrl)).data.id;
+
+  const createPlaylistUrl = `https://api.spotify.com/v1/users/${user_id}/playlists`;
+  const data = {
+    name: 'Workout Assistant - ' + new Date().toLocaleString(),
+    description: 'Auto generated playlist using Workout Assistant',
+    public: false,
+  };
+  const playlistId = (
+    await httppost(createPlaylistUrl, JSON.stringify(data), undefined, {
+      'Content-Type': 'application/json',
+    })
+  ).data.id;
+
+  const addToPlaylistUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${songString}`;
+  await httppost(addToPlaylistUrl);
+
+  res.send({ url: `https://open.spotify.com/playlist/${playlistId}` });
 };

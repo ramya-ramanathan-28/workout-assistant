@@ -5,13 +5,11 @@ import Graph from './graph';
 export function SelectGraph() {
   const appStageContext = useContext(AppStageContext);
   const workoutContext = useContext(WorkoutContext);
-  const [selectedWorkout, setSelectedIcon] = useState(workoutContext.format);
-  workoutContext.setFormat(selectedWorkout);
   appStageContext.setnextStageState(workoutContext.isAllSet());
   return (
     <Graph
-      selectedItem={selectedWorkout}
-      onSelect={setSelectedIcon}
+      selectedItem={workoutContext.format}
+      onSelect={workoutContext.setFormat}
       isImage={true}
       graphInfo={[
         {

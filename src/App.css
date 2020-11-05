@@ -82,3 +82,22 @@
 .selected-pattern {
   border: blue 4px solid;
 }
+
+.song-list {
+  width: 900px;
+  /* margin: 0 400px; */
+}
+
+.ms-DetailsRow-fields,
+.ms-DetailsHeader,
+.ms-DetailsRow,
+.ms-DetailsRow-cell {
+  background-color: black;
+  color: white !important;
+  border: none;
+  font-size: 15px;
+}
+
+.ms-DetailsHeader-cell {
+  color: #afafaf;
+}

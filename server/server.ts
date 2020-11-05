@@ -8,7 +8,7 @@ import express from 'express';
 import { postMessages, putMessage } from './routes/messages';
 
 import { isLoggedIn, login, redirectCallback } from './routes/login';
-import { getPlaylist, getSongs } from './routes/users';
+import { addSongsToPlaylist, getPlaylist, getSongs } from './routes/users';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -20,6 +20,12 @@ app.use(cors());
 app.get('/api/songs', getSongs);
 
 app.get('/api/playlist', getPlaylist);
+
+// Call for addSongsToPlaylistAPI is of the below format
+//  fetch('http://localhost:5000/api/addSongsToPlaylist?songIds=2Zgnaip1c876zmBhz9HifI,4CoSCPlKNrWli7E5kFtbcl', { method:'post'}).then((response) =>
+//           response.json().then((res) => console.log(res))
+// );
+app.post('/api/addSongsToPlaylist', addSongsToPlaylist);
 
 // messages
 app.post('/api/messages', postMessages);

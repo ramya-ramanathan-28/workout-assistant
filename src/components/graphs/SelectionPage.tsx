@@ -1,8 +1,8 @@
-import { mergeStyleSets } from 'office-ui-fabric-react';
+import { mergeStyleSets, TextField } from 'office-ui-fabric-react';
 import * as ReactIcons from '@fluentui/react-icons';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Graph from './graph';
-import { AppStageContext } from '../../contexts';
+import { AppStageContext, WorkoutContext } from '../../contexts';
 import { STAGES } from '../../constant';
 import { SelectGraph } from './SelectGraph';
 import { SelectTime } from './SelectTime';
@@ -33,7 +33,8 @@ const classes = mergeStyleSets({
 });
 
 export function SelectionPage(props: any) {
-  const appStageContext = useContext(AppStageContext);
+  const workoutContext = useContext(WorkoutContext);
+  const [showUserDefinedInput, setShowUserDefinedInput] = useState(false);
   return (
     <div className="selectionpage">
       <div className="selectionpage_predefinedcontainers">
@@ -43,13 +44,26 @@ export function SelectionPage(props: any) {
         <div
           className={classes.cell}
           onClick={() => {
-            appStageContext.gotoStage(STAGES.OwnGraph);
+            if (showUserDefinedInput) {
+              workoutContext.setCustomFormat('');
+            } else {
+              workoutContext.setFormat('');
+            }
+            setShowUserDefinedInput(!showUserDefinedInput);
           }}
         >
           <div>Or pick a custom setting</div>
           <ReactIcons.AddIcon className={classes.icon} />
-          {/* <br /> */}
         </div>
+        {showUserDefinedInput ? (
+          <TextField
+            placeholder="Enter Custom Setting"
+            value={workoutContext.customFormat}
+            onChange={(e, newValue = '') => {
+              workoutContext.setCustomFormat(newValue);
+            }}
+          />
+        ) : null}
       </div>
       <div className="selectionpage_predefinedcontainers">
         <SelectTime />
