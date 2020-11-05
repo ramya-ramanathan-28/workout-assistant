@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import Graph from './graph';
 import { AppStageContext } from '../../contexts';
 import { STAGES } from '../../constant';
+import { SelectGraph } from './SelectGraph';
 
 const classes = mergeStyleSets({
   cell: {
@@ -17,7 +18,7 @@ const classes = mergeStyleSets({
   },
   icon: {
     fontSize: '50px',
-    margin: "5px 20px",
+    margin: '5px 20px',
   },
   code: {
     background: '#f2f2f2',
@@ -35,7 +36,7 @@ export function SelectionPage(props: any) {
   return (
     <div className="selectionpage">
       <div className="selectionpage_predefinedcontainers">
-        <Graph/>
+        <SelectGraph />
       </div>
       <div className="selectionpage_userDefined_container">
         <div

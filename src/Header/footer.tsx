@@ -16,7 +16,11 @@ export function Footer(props: any) {
       </Button>
       <Button
         buttonType={ButtonType.primary}
-        disabled={!isLoggedin || appStageContext.nextStage == -1}
+        disabled={
+          !isLoggedin ||
+          appStageContext.nextStage == -1 ||
+          !appStageContext.nextStageState
+        }
         onClick={() => {
           appStageContext.gotoStage(appStageContext.nextStage);
         }}

@@ -42,13 +42,12 @@ export const getSongs = async (req: any, res: any) => {
           name,
         } = songFeature;
         featuresList.push([
-          10 * tempo,
-          10 * danceability,
-          10 * energy,
-          2 * (loudness + 60),
-          1 / acousticness,
-          valence,
-          time_signature,
+          tempo / 200,
+          danceability,
+          2 * energy,
+          (10 * (loudness + 60)) / 60,
+          1 / acousticness / 1000,
+          10 * valence,
         ]);
         songIdList.push({ id: id, name: idNameMap[id] });
         console.log('song', songIdList[songIdList.length - 1]);

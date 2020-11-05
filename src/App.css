@@ -7,14 +7,17 @@
   /* align-items: stretch; */
 }
 
-
-
 .main {
   /* flex: 1 1 auto; */
   /* height: 100%; */
   flex-grow: 1;
   /* border: 10px red solid; */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(21, 136, 62, 0.3)), url('./background.jpg');
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(21, 136, 62, 0.3)
+    ),
+    url('./background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -54,7 +57,7 @@
   padding: 5%;
 }
 
-.landing-page-greeting{
+.landing-page-greeting {
   margin-bottom: 20px;
 }
 
@@ -75,4 +78,7 @@
 .selectionpage_userDefined {
   display: flex;
   flex-direction: column;
+}
+.selected-pattern {
+  border: blue 10px solid;
 }
