@@ -16,6 +16,23 @@ export const AppStageContext = React.createContext({
   gotoPrevStage: () => {},
 });
 
+export const WorkoutContext = React.createContext({
+  format: "1,2,1,2",
+  setFormat: (code: string) => {},
+});
+
+export const WorkoutContextProvider = (props: any)=>{
+  const [format, setFormat] = React.useState("1,2,1,2");
+
+  return (
+  <WorkoutContext.Provider value={{
+    format,
+    setFormat
+  }}>
+    {props.children}
+  </WorkoutContext.Provider>
+  )};
+
 export const AppStageContextProvider = (props: any) => {
   const [prevStageArr, setPrevState] = useState([-1]);
   const [currentStage, setCurrentStage] = useState(STAGES.LandingPage);

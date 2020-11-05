@@ -8,15 +8,16 @@ import { STAGES } from '../../constant';
 const classes = mergeStyleSets({
   cell: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    margin: '80px',
-    float: 'left',
-    height: '50px',
-    width: '50px',
+    flexDirection: 'row',
+    // alignItems: 'center',
+    margin: '20px 20px 10px 0',
+    // float: 'left',
+    // height: '50px',
+    // width: '50px',
   },
   icon: {
     fontSize: '50px',
+    margin: "5px 20px",
   },
   code: {
     background: '#f2f2f2',
@@ -34,7 +35,7 @@ export function SelectionPage(props: any) {
   return (
     <div className="selectionpage">
       <div className="selectionpage_predefinedcontainers">
-        <Graph setSelectedConfig={props.setSelectedConfig}></Graph>
+        <Graph/>
       </div>
       <div className="selectionpage_userDefined_container">
         <div
@@ -43,8 +44,9 @@ export function SelectionPage(props: any) {
             appStageContext.gotoStage(STAGES.OwnGraph);
           }}
         >
+          <div>Or pick a custom setting</div>
           <ReactIcons.AddIcon className={classes.icon} />
-          <br />
+          {/* <br /> */}
         </div>
       </div>
     </div>

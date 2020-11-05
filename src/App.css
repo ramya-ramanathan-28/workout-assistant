@@ -65,6 +65,7 @@
 }
 .selectionpage {
   display: flex;
+  flex-direction: column;
 }
 .selectionpage > * {
   display: flex;
