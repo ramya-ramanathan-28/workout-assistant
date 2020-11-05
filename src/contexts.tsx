@@ -5,6 +5,7 @@ export const LoginContext = React.createContext({
   isLoggedin: false,
   userName: 'Stranger',
   userEmail: '',
+  profilePicLink: '',
 });
 
 export const WorkoutContext = React.createContext({

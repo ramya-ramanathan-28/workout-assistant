@@ -18,6 +18,7 @@ function App() {
     isLoggedin: false,
     userName: 'Stranger',
     userEmail: '',
+    profilePicLink: '',
   });
 
   useEffect(() => {
@@ -29,12 +30,14 @@ function App() {
             isLoggedin: true,
             userName: data.userName,
             userEmail: data.eMailId,
+            profilePicLink: data.profilePicLink,
           });
         } else {
           setLoginDetails({
             isLoggedin: false,
             userName: 'Stranger',
             userEmail: '',
+            profilePicLink: '',
           });
         }
       });

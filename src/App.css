@@ -33,6 +33,7 @@
 .Appfooter,
 .AppHeader {
   /* height: 100%; */
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -100,4 +101,10 @@
 
 .ms-DetailsHeader-cell {
   color: #afafaf;
+}
+
+.profile_pic_image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
