@@ -8,7 +8,7 @@ const getTrainingName = (format: any): string => {
     case 2: return "Gradual Increase"
     case 3: return "Increase - Decrease"
     case 4: return "High Intensity Interval Training"
-    default: return ""
+    default: return "Custom"
   }
 };
 

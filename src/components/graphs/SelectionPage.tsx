@@ -41,29 +41,7 @@ export function SelectionPage(props: any) {
       <div className="selectionpage_predefinedcontainers">
         <SelectGraph />
       </div>
-      
-      <div className="selectionpage_predefinedcontainers">
-        <SelectTime />
-      </div>
-      { workoutContext.format && workoutContext.duration && (
-        <Button
-          styles={{root:{
-            borderRadius: "25px",
-            backgroundColor: "white",
-            fontWeight: 600,
-            fontSize: "22px",
-            color: "black",
-            marginTop: "20px",
-            width: "130px",
-            height: "50px"
-          }}}
-          onClick={() => {
-            appStageContext.gotoStage(appStageContext.nextStage);
-          }}
-        >
-          Proceed
-        </Button>
-      )}
+
       {/* <div className="selectionpage_userDefined_container">
         <div
           className={classes.cell}
@@ -89,6 +67,29 @@ export function SelectionPage(props: any) {
           />
         ) : null}
       </div> */}
+      
+      <div className="selectionpage_predefinedcontainers">
+        <SelectTime />
+      </div>
+      { workoutContext.format && workoutContext.duration && (
+        <Button
+          styles={{root:{
+            borderRadius: "25px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            fontSize: "22px",
+            color: "black",
+            marginTop: "20px",
+            width: "130px",
+            height: "50px"
+          }}}
+          onClick={() => {
+            appStageContext.gotoStage(appStageContext.nextStage);
+          }}
+        >
+          Proceed
+        </Button>
+      )}
     </div>
   );
 }
