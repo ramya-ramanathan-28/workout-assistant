@@ -5,6 +5,7 @@ import Graph from './graph';
 import { AppStageContext } from '../../contexts';
 import { STAGES } from '../../constant';
 import { SelectGraph } from './SelectGraph';
+import { SelectTime } from './SelectTime';
 
 const classes = mergeStyleSets({
   cell: {
@@ -49,6 +50,9 @@ export function SelectionPage(props: any) {
           <ReactIcons.AddIcon className={classes.icon} />
           {/* <br /> */}
         </div>
+      </div>
+      <div className="selectionpage_predefinedcontainers">
+        <SelectTime />
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ export const WorkoutContext = React.createContext({
   customFormat: '',
   setCustomFormat: (code: string) => {},
   setFormat: (code: string) => {},
+  duration: 0,
+  setDuration: (duration: number) => {},
   isAllSet: (): boolean => {
     return false;
   },
@@ -20,8 +22,9 @@ export const WorkoutContext = React.createContext({
 export const WorkoutContextProvider = (props: any) => {
   const [format, setFormat] = React.useState('');
   const [customFormat, setCustomFormat] = React.useState('');
+  const [duration, setDuration] = React.useState(30);
   const isAllSet = () => {
-    return format !== '' || customFormat !== '';
+    return (format !== '' || customFormat !== '') && duration > 0;
   };
   return (
     <WorkoutContext.Provider
@@ -31,6 +34,8 @@ export const WorkoutContextProvider = (props: any) => {
         setCustomFormat,
         setFormat,
         isAllSet,
+        duration,
+        setDuration,
       }}
     >
       {props.children}
