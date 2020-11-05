@@ -17,7 +17,7 @@ function SongList(props: any) {
     useEffect(() => {
       if (showSongs) {
         fetch('http://localhost:5000/api/songs').then((response) =>
-          response.json().then((res) => setSongsList(res))
+        response.json().then((res) => setSongsList(res))
         );
       }
     }, [showSongs]);
