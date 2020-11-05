@@ -63,3 +63,15 @@
   /* flex: 2 1 auto; */
   /* margin: 20%; */
 }
+.selectionpage {
+  display: flex;
+}
+.selectionpage > * {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.selectionpage_userDefined {
+  display: flex;
+  flex-direction: column;
+}

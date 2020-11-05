@@ -29,4 +29,5 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/login', login);
 
 app.get('/redirectCallback', redirectCallback);
+
 app.get('/isLoggedin', isLoggedIn);
