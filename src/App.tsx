@@ -8,6 +8,7 @@ import MainBody from './Body/mainBody';
 import { Footer } from './Header/footer';
 import {
   AppStageContext,
+  WorkoutContextProvider,
   LoginContext,
   AppStageContextProvider,
 } from './contexts';
@@ -42,13 +43,15 @@ function App() {
   return (
     <LoginContext.Provider value={loginDetails}>
       <AppStageContextProvider>
-        <div className="App">
-          <AppHeader />
-          <div className="main">
-            <MainBody></MainBody>
+        <WorkoutContextProvider>
+          <div className="App">
+            <AppHeader />
+            <div className="main">
+              <MainBody></MainBody>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </WorkoutContextProvider>
       </AppStageContextProvider>
     </LoginContext.Provider>
   );
