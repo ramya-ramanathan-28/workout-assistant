@@ -23,3 +23,9 @@ export function processTokenResponse(res) {
 export function getToken() {
   return tokencode;
 }
+
+export function clearToken(req: any, res: any){
+  tokencode = '';
+  refreshToken = '';
+  res.send('Cleared')
+}

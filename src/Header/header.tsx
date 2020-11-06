@@ -4,11 +4,20 @@ import { Login } from './login';
 
 
 function ProfileInfo(props: { userName: React.ReactNode; src: string }) {
-  return (
+  const setLogin = useContext(LoginContext).setLogin
+  const logoutCallback =  ()=>fetch('http://localhost:5000/logout').then((_) =>
+     setLogin({
+      isLoggedin: false,
+      userName: 'friend',
+      userEmail: '',
+      profilePicLink: ''
+     })
+  );
+  return(
     <div style={{display:"flex", flexDirection: "row", alignItems:"center"}}>
       <img className="profile_pic_image" src={props.src} alt="profile" ></img>
       <strong style={{margin: "0 10px 0 0"}}>{props.userName}</strong>
-      <Login text="Logout from Spotify"/>
+      <Login text="Logout from Spotify" onClick={logoutCallback}/>
     </div>
   );
 }

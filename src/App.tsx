@@ -18,7 +18,7 @@ function App() {
     isLoggedin: false,
     userName: 'friend',
     userEmail: '',
-    profilePicLink: '',
+    profilePicLink: ''
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function App() {
             isLoggedin: true,
             userName: data.userName,
             userEmail: data.eMailId,
-            profilePicLink: data.profilePicLink,
+            profilePicLink: data.profilePicLink
           });
         } else {
           setLoginDetails({
@@ -42,9 +42,16 @@ function App() {
         }
       });
   }, []);
-
+  
   return (
-    <LoginContext.Provider value={loginDetails}>
+    <LoginContext.Provider value={
+      {...loginDetails, 
+      setLogin:(loginDetails: any)=>
+        {
+          setLoginDetails(loginDetails) 
+        }
+      }
+      }>
       <AppStageContextProvider>
         <WorkoutContextProvider>
           <div className="App">

@@ -9,6 +9,7 @@ import { postMessages, putMessage } from './routes/messages';
 
 import { isLoggedIn, login, redirectCallback } from './routes/login';
 import { addSongsToPlaylist, getPlaylist, getSongs } from './routes/users';
+import { clearToken } from './data_music/config';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -35,6 +36,7 @@ app.put('/api/messages/:id', putMessage);
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/login', login);
+app.get('/logout', clearToken);
 
 app.get('/redirectCallback', redirectCallback);
 
