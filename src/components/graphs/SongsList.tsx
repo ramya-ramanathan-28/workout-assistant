@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'office-ui-fabric-react';
-import { WorkoutContext } from '../../contexts';
+import { AppStageContext, WorkoutContext } from '../../contexts';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import { DetailsListDocumentsExample } from './Songs';
 
@@ -8,6 +8,7 @@ function SongList(props: any) {
   const [songsList, setSongsList] = useState([]);
   const [playlistLink, setPlaylistLink] = useState('');
   const workoutContext = useContext(WorkoutContext);
+  const appStageContext = useContext(AppStageContext);
   const [showPlaylistPage, setShowPlaylistPage] = useState(false)
   const [playlistName, setPlaylistName] = useState("Workout Assistant - " + new Date().toLocaleString());
   useEffect(() => {
@@ -22,6 +23,23 @@ function SongList(props: any) {
 
   return (
     <>
+      <Button
+        styles={{
+          root: {
+            borderRadius: "15px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            color: "black",
+            margin: "0 10px",
+            float: "left"
+          }
+        }}
+        onClick={() => {
+          appStageContext.gotoStage(appStageContext.prevStageArr[appStageContext.prevStageArr.length - 1]);
+        }}
+      >
+        Back
+        </Button>
       <div className="song-list">
         {playlistLink === '' && (
           <div style={{ display: "flex", margin: "20px" }}>

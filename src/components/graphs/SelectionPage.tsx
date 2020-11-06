@@ -19,19 +19,19 @@ export function SelectionPage(props: any) {
       <div className="selectionpage_predefinedcontainers">
         <SelectTime />
       </div>
+
       {(workoutContext.format || workoutContext.customFormat) &&
         workoutContext.duration && (
           <Button
             styles={{
               root: {
-                borderRadius: '25px',
-                backgroundColor: 'white',
-                fontWeight: 600,
-                fontSize: '22px',
-                color: 'black',
-                marginTop: '20px',
-                width: '130px',
-                height: '50px',
+                borderRadius: "25px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            fontSize: "22px",
+            color: "black",
+            width: "125px",
+            height: "50px",
               },
             }}
             onClick={() => {
@@ -41,6 +41,7 @@ export function SelectionPage(props: any) {
             Proceed
           </Button>
         )}
+
     </div>
   );
 }
