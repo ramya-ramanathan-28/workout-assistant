@@ -258,3 +258,14 @@ export const addSongsToPlaylist = async (req: any, res: any) => {
 
   res.send({ url: `https://open.spotify.com/playlist/${playlistId}` });
 };
+
+export const addToQueue = async (req: any, res: any) => {
+  const songIds = req.query.songIds.split(',');
+  const addToQueueUrl = 'https://api.spotify.com/v1/me/player/queue/?uri=';
+  await Promise.all(songIds.forEach(
+    async(songId: string) => {
+      await httppost(addToQueueUrl+`spotify:track:${songId}`)
+    })
+  );
+  res.send({ url: `https://open.spotify.com/queue` });
+};

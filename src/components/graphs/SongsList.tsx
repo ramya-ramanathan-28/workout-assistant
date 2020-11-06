@@ -7,7 +7,7 @@ function SongList(props: any) {
   const [songsList, setSongsList] = useState([]);
   const [playlistLink, setPlaylistLink] = useState('');
   const workoutContext = useContext(WorkoutContext);
-
+  const [isPlaylist, setIsPlaylist] = useState(true)
   useEffect(() => {
     fetch(
       `http://localhost:5000/api/playlist?duration=${
@@ -60,20 +60,21 @@ function SongList(props: any) {
             margin: "0 10px"
           }}}
             onClick={() => {
+              setIsPlaylist(false)
               const songids = songsList.map((song: any) => {
                 return song.id;
               });
               
               fetch(
-                `http://localhost:5000/api/addSongsToPlaylist?songIds=${songids.join()}`,
+                `http://localhost:5000/api/addToQueue?songIds=${songids.join()}`,
                 { method: 'post' }
-                ).then((response) =>
+              ).then((response) =>
                 response.json().then((res) => {
                   console.log(res);
                   setPlaylistLink(res.url);
                 })
-                );
-              }}
+              );
+            }}
               >
             Add songs to the queue
           </Button>
@@ -94,7 +95,7 @@ function SongList(props: any) {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <p>Playlist created</p>
+            <p>{isPlaylist? "Playlist created" : "Added to the queue"}</p>
             <a href={playlistLink} style={{color:"white"}}>Click here to listen</a>
           </div>
         )}

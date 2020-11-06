@@ -8,7 +8,7 @@ import express from 'express';
 import { postMessages, putMessage } from './routes/messages';
 
 import { isLoggedIn, login, redirectCallback } from './routes/login';
-import { addSongsToPlaylist, getPlaylist, getSongs } from './routes/users';
+import { addSongsToPlaylist, addToQueue, getPlaylist, getSongs } from './routes/users';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -26,6 +26,7 @@ app.get('/api/playlist', getPlaylist);
 //           response.json().then((res) => console.log(res))
 // );
 app.post('/api/addSongsToPlaylist', addSongsToPlaylist);
+app.post('/api/addToQueue', addToQueue);
 
 // messages
 app.post('/api/messages', postMessages);
