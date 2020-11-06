@@ -6,6 +6,7 @@ export const LoginContext = React.createContext({
   userName: 'friend',
   userEmail: '',
   profilePicLink: '',
+  setLogin: (args: any)=>{}
 });
 
 export const WorkoutContext = React.createContext({

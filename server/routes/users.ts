@@ -232,6 +232,7 @@ export const getPlaylist = async (req: any, res: any) => {
 };
 
 export const addSongsToPlaylist = async (req: any, res: any) => {
+  const playlistName: string = req.query.playlistName;
   const songIds = req.query.songIds.split(',');
   let songString = '';
   songIds.forEach(
@@ -243,7 +244,7 @@ export const addSongsToPlaylist = async (req: any, res: any) => {
 
   const createPlaylistUrl = `https://api.spotify.com/v1/users/${user_id}/playlists`;
   const data = {
-    name: 'Workout Assistant - ' + new Date().toLocaleString(),
+    name: playlistName || 'Workout Assistant - ' + new Date().toLocaleString(),
     description: 'Auto generated playlist using Workout Assistant',
     public: false,
   };
