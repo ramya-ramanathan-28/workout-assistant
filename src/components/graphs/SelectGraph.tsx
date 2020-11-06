@@ -23,7 +23,7 @@ const classes = mergeStyleSets({
     display: 'flex',
     flexDirection: 'row',
     // alignItems: 'center',
-    margin: '20px 20px 10px 0',
+    margin: '0 10px',
     // float: 'left',
     // height: '50px',
     // width: '50px',
@@ -31,6 +31,7 @@ const classes = mergeStyleSets({
   icon: {
     fontSize: '50px',
     margin: '5px 20px',
+    cursor: "pointer"
   },
   code: {
     background: '#f2f2f2',
@@ -46,7 +47,7 @@ export function UserDefined() {
   const [showUserDefinedInput, setShowUserDefinedInput] = useState(false);
   const workoutContext = useContext(WorkoutContext);
   return (
-    <div className="selectionpage_userDefined_container">
+    <div className="selectionpage_userDefined_container" style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
       <div
         className={classes.cell}
         onClick={() => {
@@ -60,12 +61,22 @@ export function UserDefined() {
       >
         <ReactIcons.AddIcon className={classes.icon} />
       </div>
-      {showUserDefinedInput ? (
+      {showUserDefinedInput && !workoutContext.format ? (
         <TextField
-          placeholder="Enter Custom Setting"
+          placeholder="Enter Custom Setting. For e.g. 1,2,3,2,1"
           value={workoutContext.customFormat}
           onChange={(e, newValue = '') => {
             workoutContext.setCustomFormat(newValue);
+          }}
+          styles={{
+            root:{
+              width: "400px",
+              selectors: {
+                ":hover":{
+                  outline: "1px solid white"
+                }
+              }
+            }
           }}
         />
       ) : null}
@@ -109,7 +120,7 @@ export function SelectGraph() {
       <UserDefined></UserDefined>
 
       {(workoutContext.format || workoutContext.customFormat) && (
-        <p> Training : {getTrainingName(workoutContext.format)}</p>
+        <p style={{marginTop: "10px", marginBottom: "10px"}}> Training : {getTrainingName(workoutContext.format)}</p>
       )}
     </div>
   );
