@@ -79,9 +79,9 @@ export function SelectionPage(props: any) {
             fontWeight: 600,
             fontSize: "22px",
             color: "black",
-            marginTop: "20px",
-            width: "130px",
-            height: "50px"
+            width: "125px",
+            height: "50px",
+            margin: "20px auto"
           }}}
           onClick={() => {
             appStageContext.gotoStage(appStageContext.nextStage);
