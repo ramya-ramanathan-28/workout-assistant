@@ -16,7 +16,7 @@ import { STAGES } from './constant';
 function App() {
   const [loginDetails, setLoginDetails] = useState({
     isLoggedin: false,
-    userName: 'Stranger',
+    userName: 'friend',
     userEmail: '',
     profilePicLink: '',
   });
@@ -35,7 +35,7 @@ function App() {
         } else {
           setLoginDetails({
             isLoggedin: false,
-            userName: 'Stranger',
+            userName: 'friend',
             userEmail: '',
             profilePicLink: '',
           });
@@ -52,7 +52,7 @@ function App() {
             <div className="main">
               <MainBody></MainBody>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </WorkoutContextProvider>
       </AppStageContextProvider>

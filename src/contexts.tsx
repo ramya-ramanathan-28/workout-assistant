@@ -3,7 +3,7 @@ import { STAGES } from './constant';
 
 export const LoginContext = React.createContext({
   isLoggedin: false,
-  userName: 'Stranger',
+  userName: 'friend',
   userEmail: '',
   profilePicLink: '',
 });

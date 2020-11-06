@@ -1,4 +1,4 @@
-import { mergeStyleSets, TextField } from 'office-ui-fabric-react';
+import { mergeStyleSets, TextField, Button } from 'office-ui-fabric-react';
 import * as ReactIcons from '@fluentui/react-icons';
 import React, { useContext, useState } from 'react';
 import Graph from './graph';
@@ -34,13 +34,15 @@ const classes = mergeStyleSets({
 
 export function SelectionPage(props: any) {
   const workoutContext = useContext(WorkoutContext);
+  const appStageContext = useContext(AppStageContext);
   const [showUserDefinedInput, setShowUserDefinedInput] = useState(false);
   return (
     <div className="selectionpage">
       <div className="selectionpage_predefinedcontainers">
         <SelectGraph />
       </div>
-      <div className="selectionpage_userDefined_container">
+
+      {/* <div className="selectionpage_userDefined_container">
         <div
           className={classes.cell}
           onClick={() => {
@@ -64,10 +66,30 @@ export function SelectionPage(props: any) {
             }}
           />
         ) : null}
-      </div>
+      </div> */}
+      
       <div className="selectionpage_predefinedcontainers">
         <SelectTime />
       </div>
+      { workoutContext.format && workoutContext.duration && (
+        <Button
+          styles={{root:{
+            borderRadius: "25px",
+            backgroundColor: "white",
+            fontWeight: 600,
+            fontSize: "22px",
+            color: "black",
+            marginTop: "20px",
+            width: "130px",
+            height: "50px"
+          }}}
+          onClick={() => {
+            appStageContext.gotoStage(appStageContext.nextStage);
+          }}
+        >
+          Proceed
+        </Button>
+      )}
     </div>
   );
 }

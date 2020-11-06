@@ -12,22 +12,26 @@ function Graph(props: any) {
             props.isImage ? (
               <button
                 className={`${graphClassNames.item} ${
-                  props.selectedItem == eachItem.id ? 'selected-pattern' : ''
-                }`}
+                  props.selectedItem === eachItem.id ? 'selected-pattern' : ''
+                } img__wrap`}
                 onClick={() => {
                   props.onSelect(eachItem.id);
                 }}
               >
+                {/* <div className="content-overlay"></div> */}
                 <img
-                  className={graphClassNames.graphImage}
+                  className={`${graphClassNames.graphImage} content-image`}
                   src={eachItem.src}
                   alt={eachItem.alt}
                 />
+                <div className="img__description_layer">
+              <h3 className="img__description">{eachItem.alt}</h3>
+                </div>
               </button>
             ) : (
               <Button
                 className={`${graphClassNames.item} ${
-                  props.selectedItem == eachItem.id ? 'selected-pattern' : ''
+                  props.selectedItem === eachItem.id ? 'selected-pattern' : ''
                 }`}
                 onClick={() => {
                   props.onSelect(eachItem.id);

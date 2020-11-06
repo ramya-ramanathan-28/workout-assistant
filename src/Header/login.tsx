@@ -1,7 +1,7 @@
 import { Button, ButtonType } from 'office-ui-fabric-react';
 import React from 'react';
 
-export function Login(_props: any) {
+export function Login(_props: {text: string}) {
   return (
     <Button 
     onClick={() => window.location.replace('http://localhost:5000/login')}
@@ -11,7 +11,7 @@ export function Login(_props: any) {
       fontWeight: 600,
       color: "black",
     }}}>
-      Continue with Spotify
+      {_props.text}
     </Button>
   );
 }
